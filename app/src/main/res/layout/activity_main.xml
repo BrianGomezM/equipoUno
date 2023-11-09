@@ -9,8 +9,8 @@
        <include
            android:id="@+id/contentToobar"
            layout="@layout/toolbar">
-
        </include>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
