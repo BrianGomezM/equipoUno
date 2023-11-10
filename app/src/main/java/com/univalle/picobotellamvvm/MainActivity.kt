@@ -1,6 +1,7 @@
 package com.univalle.picobotellamvvm
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -23,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.contentToobar.toolbar.apply {
             setupShareButton()
-            setupPruebaButton()
+            setupShowButton()
+            setupRatingsButton()
         }
     }
 
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun View.setupPruebaButton() {
+    private fun View.setupShowButton() {
         val pruebaImageView = findViewById<ImageView>(R.id.prueba)
         pruebaImageView.setOnClickListener {
             showDeleteDialog()
@@ -53,5 +55,13 @@ class MainActivity : AppCompatActivity() {
         val idReto = 1
         val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto)
         dialog.show()
+    }
+
+    private fun View.setupRatingsButton(){
+        val ratingClick = findViewById<ImageView>(R.id.ratings)
+        ratingClick.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.appUrl)))
+            startActivity(intent)
+        }
     }
 }
