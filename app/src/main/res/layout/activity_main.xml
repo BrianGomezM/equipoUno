@@ -1,16 +1,69 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@mipmap/bg_floor"
         tools:context=".MainActivity">
 
-       <include
-           android:id="@+id/contentToobar"
-           layout="@layout/toolbar">
-       </include>
+        <include
+            android:id="@+id/contentToobar"
+            layout="@layout/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+        </include>
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="111dp"
+            android:layout_height="388dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="168dp"
+            android:src="@mipmap/bottle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/contadorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="332dp"
+            android:text="3"
+            android:textColor="#FFA500"
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/boton_presioname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="72dp"
+            android:backgroundTint="#FFA500"
+            android:text="Presióname"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="onIniciarContadorClick"
+            android:animation="@anim/parpadeo"
+            />
+
+        <androidx.constraintlayout.helper.widget.Layer
+            android:id="@+id/layer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="imageView"
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="130dp" /> <!-- Color naranja -->
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
