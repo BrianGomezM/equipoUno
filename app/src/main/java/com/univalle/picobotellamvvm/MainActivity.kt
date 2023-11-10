@@ -5,45 +5,53 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.univalle.picobotellamvvm.Dialogs.DeleteDialog
 import com.univalle.picobotellamvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupToolbar()
     }
+
     private fun setupToolbar() {
-        val toolbar = binding.contentToobar.toolbar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.contentToobar.toolbar)
 
-        // Obtén la referencia al ImageView utilizando el ID
-        val shareImageView = toolbar.findViewById<ImageView>(R.id.share)
+        binding.contentToobar.toolbar.apply {
+            setupShareButton()
+            setupPruebaButton()
+        }
+    }
 
-        // Agrega un OnClickListener al ImageView
-        shareImageView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                // Crear un Intent para compartir texto
-                val shareIntent = Intent(Intent.ACTION_SEND)
-                shareIntent.type = "text/plain"
+    private fun View.setupShareButton() {
+        val shareImageView = findViewById<ImageView>(R.id.share)
+        shareImageView.setOnClickListener {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            val title = getString(R.string.title)
+            val slogan = getString(R.string.slogan)
+            val appUrl = getString(R.string.appUrl)
+            val message = "$title\n$slogan\n$appUrl"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, message)
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.titleSistema)))
+        }
+    }
 
-                // Agrega el título de la aplicación, el eslogan y la URL
-                val title = "App Pico Botella"
-                val slogan = "Solo los valientes lo juegan !!"
-                val appUrl = "https://play.google.com/store/apps/details?id=com.univalle.picobotellamvvm"
+    private fun View.setupPruebaButton() {
+        val pruebaImageView = findViewById<ImageView>(R.id.prueba)
+        pruebaImageView.setOnClickListener {
+            showDeleteDialog()
+        }
+    }
 
-                // Crea el mensaje personalizado
-                val message = "$title\n$slogan\n$appUrl"
-
-                // Establece el texto a compartir
-                shareIntent.putExtra(Intent.EXTRA_TEXT, message)
-
-                // Muestra el menú de uso compartido
-                startActivity(Intent.createChooser(shareIntent, "Compartir a través de"))
-            }
-        })
+    private fun showDeleteDialog() {
+        val mensajeReto = "hola esto es un reto"
+        val idReto = 1
+        val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto)
+        dialog.show()
     }
 }
