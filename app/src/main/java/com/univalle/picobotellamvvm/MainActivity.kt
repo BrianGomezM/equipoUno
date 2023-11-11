@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var contador: CountDownTimer? = null
     private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_PicoBotellaMVVM)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 

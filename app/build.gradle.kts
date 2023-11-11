@@ -66,6 +66,8 @@ dependencies {
     //corrutinas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
+    //Lottie
+    implementation ("com.airbnb.android:lottie:3.4.0")
     //viewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 

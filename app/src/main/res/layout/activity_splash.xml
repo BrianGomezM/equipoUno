@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/bottleView"
+        android:layout_width="237dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/splashbottle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bottleView"
+        android:text="@string/pico_botella"
+        android:textSize="50sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#f85d10"
+        android:fontFamily="sans-serif-medium"
+        />
+
+
+</RelativeLayout>
