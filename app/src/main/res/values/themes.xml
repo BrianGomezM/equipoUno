@@ -7,7 +7,7 @@
 
     <style name="Theme.PicoBotellaMVVM" parent="Base.Theme.PicoBotellaMVVM" />
 
-    <style name="SplashTheme" parent="Theme.PicoBotellaMVVM">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
     </style>
 </resources>

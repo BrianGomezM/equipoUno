@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PicoBotellaMVVM</string>
+    <string name="logo_de_una_botella">Logo de una botella</string>
+    <string name="pico_botella">Pico Botella</string>
 </resources>
