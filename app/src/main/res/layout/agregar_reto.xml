@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/agregar_reto"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/escribir_el_reto"
+        android:textColorHint="@color/gray"
+        android:layout_marginTop="15dp"
+        android:padding="20dp"
+        android:backgroundTint="@color/orange"
+        android:importantForAutofill="no" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="end">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelar"
+            android:backgroundTint="@color/orange"
+            android:layout_marginEnd="40dp"
+            android:id="@+id/cancel_button"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar"
+            android:backgroundTint="@color/orange"
+            android:id="@+id/save_button"
+            />
+    </LinearLayout>
+</LinearLayout>

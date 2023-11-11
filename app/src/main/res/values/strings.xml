@@ -2,4 +2,8 @@
     <string name="app_name">PicoBotellaMVVM</string>
     <string name="logo_de_una_botella">Logo de una botella</string>
     <string name="pico_botella">Pico Botella</string>
+    <string name="escribir_el_reto">Escribir el reto...</string>
+    <string name="agregar_reto">Agregar reto</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
 </resources>
