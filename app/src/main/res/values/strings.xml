@@ -3,4 +3,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo_de_una_botella">Logo de una botella</string>
     <string name="pico_botella">Pico Botella</string>
+    <string name="title">App Pico Botella</string>
+
+    //Compartir APP
+    <string name="titleSistema">Compartir a través de</string>
+    <string name="slogan">Solo los valientes lo juegan !!</string>
+    <string name="appUrl">https://play.google.com/store/apps/details?id=com.nequi.MobileApp&amp;hl=es_419&amp;gl=es</string>
+
+    //Dialogo eliminar reti
+    <string name="tituloDD">¿Desea eliminar el siguiente reto?</string>
+    <string name="respuestaP">Si</string>
+    <string name="respuestaP2">Reto eliminado con éxito.</string>
+    <string name="respuestaN">No</string>
+    <string name="tituloRetos">Retos</string>
+
+    //Reto
+    <string name="textoPrueba">Crea un botòn al car click cambie de color y lance un mensaje emergente que diga "Hola mundo"</string>
 </resources>

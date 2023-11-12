@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#1E1E1E</color>
+    //Otros colores
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar">#FF1E1E1E</color>
+
+    //Colores del Toolbar
+    <color name="background">#383737</color>
+    <color name="gradientStart">#888888</color>
+    <color name="gradientCenter">#444444</color>
+    <color name="gradientEnd">#222222</color>
+
+    //Colores de cuadro de dialogo
+    <color name="colorAccent">#FFA500</color>
+
+    <color name="backgroundColor">#A7AED4</color>
+    <color name="backgroundColorItem">#e7e0eb</color>
+    <color name="backgroudColorBtn">#009688</color>
 </resources>

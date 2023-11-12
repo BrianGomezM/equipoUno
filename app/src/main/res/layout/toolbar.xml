@@ -16,6 +16,7 @@
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:padding="2dp"
+            android:id="@+id/ratings"
             android:src="@drawable/baseline_star_border_24" />
 
         <ImageView
