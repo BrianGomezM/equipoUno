@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#1E1E1E</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#AFAFAF</color>
     <color name="orange">#DC3906</color>
+    <color name="toolbar">#FF1E1E1E</color>
 </resources>
