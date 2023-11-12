@@ -12,14 +12,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.univalle.picobotellamvvm.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_PicoBotellaMVVM)
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setContentView(R.layout.activity_main)
     }
 
     }

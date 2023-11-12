@@ -13,6 +13,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -48,12 +49,16 @@ class FragmentHome : Fragment() {
 
         botonIniciar.setOnClickListener {
             iniciarContador()
+
         }
         botonIniciar.startAnimation(parpadeoAnim)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.st)
         mediaPlayer.isLooping = true
         mediaPlayer.start()
+
         }
+
+
 
     override fun onPause() {
         super.onPause()
@@ -95,6 +100,7 @@ private fun iniciarContador() {
             setupRatingsButton()
             setupInstrucciones()
         }
+
     }
 
     private fun View.setupShareButton() {
@@ -133,11 +139,13 @@ private fun iniciarContador() {
         }
     }
 
-    private fun View.setupInstrucciones(){
+    private fun View.setupInstrucciones() {
         val ratingClick = findViewById<ImageView>(R.id.instrucciones)
         ratingClick.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.action_fragmentHome_to_instruccionesFragment)
+            findNavController().navigate(R.id.action_fragmentHome_to_instruccionesFragment)
         }
     }
+
+
+
 }
