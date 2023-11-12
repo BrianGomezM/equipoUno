@@ -17,7 +17,8 @@
     <fragment
         android:id="@+id/instruccionesFragment"
         android:name="com.univalle.picobotellamvvm.InstruccionesFragment"
-        android:label="InstruccionesFragment" >
+        android:label="InstruccionesFragment"
+        tools:layout="@layout/fragment_instrucciones">
         <action
             android:id="@+id/action_instruccionesFragment_to_fragmentHome"
             app:destination="@id/fragmentHome" />

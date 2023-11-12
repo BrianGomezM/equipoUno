@@ -16,6 +16,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 
@@ -92,6 +93,7 @@ private fun iniciarContador() {
             setupShareButton()
             setupShowButton()
             setupRatingsButton()
+            setupInstrucciones()
         }
     }
 
@@ -128,6 +130,14 @@ private fun iniciarContador() {
         ratingClick.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.appUrl)))
             startActivity(intent)
+        }
+    }
+
+    private fun View.setupInstrucciones(){
+        val ratingClick = findViewById<ImageView>(R.id.instrucciones)
+        ratingClick.setOnClickListener {
+            val navController = findNavController()
+            navController.navigate(R.id.action_fragmentHome_to_instruccionesFragment)
         }
     }
 }
