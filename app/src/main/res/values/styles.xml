@@ -3,5 +3,7 @@
     <style name="customBottomNavigation"></style>
     <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowBackground">@color/white</item>
+
     </style>
+
 </resources>

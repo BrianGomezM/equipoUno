@@ -64,7 +64,8 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="imageView"
             tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="130dp" /> <!-- Color naranja -->
+            tools:layout_editor_absoluteY="130dp"
+            tools:ignore="MissingConstraints" /> <!-- Color naranja -->
         />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

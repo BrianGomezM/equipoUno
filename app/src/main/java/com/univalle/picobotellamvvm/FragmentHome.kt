@@ -13,9 +13,11 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 
@@ -47,12 +49,16 @@ class FragmentHome : Fragment() {
 
         botonIniciar.setOnClickListener {
             iniciarContador()
+
         }
         botonIniciar.startAnimation(parpadeoAnim)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.st)
         mediaPlayer.isLooping = true
         mediaPlayer.start()
+
         }
+
+
 
     override fun onPause() {
         super.onPause()
@@ -92,7 +98,9 @@ private fun iniciarContador() {
             setupShareButton()
             setupShowButton()
             setupRatingsButton()
+            setupInstrucciones()
         }
+
     }
 
     private fun View.setupShareButton() {
@@ -130,4 +138,14 @@ private fun iniciarContador() {
             startActivity(intent)
         }
     }
+
+    private fun View.setupInstrucciones() {
+        val ratingClick = findViewById<ImageView>(R.id.instrucciones)
+        ratingClick.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentHome_to_instruccionesFragment)
+        }
+    }
+
+
+
 }

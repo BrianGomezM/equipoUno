@@ -9,5 +9,18 @@
         android:id="@+id/fragmentHome"
         android:name="com.univalle.picobotellamvvm.FragmentHome"
         android:label="FragmentHome"
-        tools:layout = "@layout/fragment_home"/>
+        tools:layout = "@layout/fragment_home">
+        <action
+            android:id="@+id/action_fragmentHome_to_instruccionesFragment"
+            app:destination="@id/instruccionesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instruccionesFragment"
+        android:name="com.univalle.picobotellamvvm.InstruccionesFragment"
+        android:label="InstruccionesFragment"
+        tools:layout="@layout/fragment_instrucciones">
+        <action
+            android:id="@+id/action_instruccionesFragment_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
 </navigation>
