@@ -39,6 +39,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="332dp"
             android:text="3"
+            android:visibility="invisible"
             android:textColor="#FFA500"
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
