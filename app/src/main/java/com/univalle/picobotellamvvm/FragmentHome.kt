@@ -139,7 +139,7 @@ class FragmentHome : Fragment() {
                         binding.contadorTextView.text = counter.toString()
                     } else {
                         binding.contadorTextView.visibility = View.INVISIBLE
-                        counter = 4
+                            counter = 4
                         //spinButton.isEnabled=true
 
                             mediaPlayer.start()
