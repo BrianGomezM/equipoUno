@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="55000000"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00FFFFFF"
+    android:layout_gravity="center">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@mipmap/picobotella"
-        android:layout_gravity="center_horizontal"
-        />
     <TextView
         android:id="@+id/textViewReto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:background="@drawable/bg_redondo_reto"
+        android:text="Hola estoy por mientras aqui pero luego seré un reto"
+        android:textStyle="bold"
+        android:paddingVertical="90dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:layout_marginTop="50dp"
+        />
 
-    <!-- Botón "Cerrar" -->
-    <Button
+    <ImageView
+        android:id="@+id/roundedPokemon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/picobotella"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/imagen_de_un_pokemon"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonCerrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/cerrar"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:text="Cerrar"
-        android:background="@color/TittleColor" />
+        android:layout_below="@id/textViewReto"
+        android:translationY="-25dp"
+        android:backgroundTint="@color/TittleColor"
+        app:cornerRadius="7dp"
+        />
 
-</LinearLayout>
+</RelativeLayout>

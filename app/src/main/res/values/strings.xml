@@ -27,4 +27,6 @@
 colocan el dispositivo móvil, luego tocan el botón parpadeante para girar la botella.El jugador que señale la
 botella debe cumplir el reto que lanza la app, de lo contrario abandona el juego.</string>
     <string name="instrucciones2">Gana el último jugador que no abandone el juego."</string>
+    <string name="imagen_de_un_pokemon">Imagen de un pokemon</string>
+    <string name="cerrar">Cerrar</string>
 </resources>
