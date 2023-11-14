@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,14 +19,16 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
+import com.univalle.picobotellamvvm.viewmodel.PokemonViewModel
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.random.Random
@@ -34,14 +37,15 @@ class FragmentHome : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private var contador: CountDownTimer? = null
     private lateinit var mediaPlayer: MediaPlayer
+    private val pokemonViewModel: PokemonViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        pokemonViewModel.getPokemones()
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -152,24 +156,41 @@ class FragmentHome : Fragment() {
                 }
             }
         }
-        timer.schedule(timertask, 1000L, 4000L)
+        timer.schedule(timertask, 1000L, 1000L)
     }
-    private fun showChallenge(){
-        val challengeDialog=AlertDialog.Builder(requireContext())
-        challengeDialog.setTitle("Reto #0000")
-        challengeDialog.setMessage("Hola Mundo")
-        challengeDialog.setPositiveButton("Aceptar"){ dialog, which ->
-
-            binding.botonPresioname.animation?.start()
-            binding.botonPresioname.visibility = View.VISIBLE
-            binding.botonPresioname.isEnabled = true
-            dialog.dismiss()
-
-        }
+    private fun showChallenge() {
+        val challengeDialog = AlertDialog.Builder(requireContext())
+        challengeDialog.setView(R.layout.random_pokemon)
         val dialog = challengeDialog.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
         dialog.show()
+        pokemonViewModel.pokemonResponse.observe(viewLifecycleOwner) { response ->
+            if (response != null && response.isSuccessful) {
+                val pokemonList = response.body()?.pokemon
+                if (!pokemonList.isNullOrEmpty()) {
+                    val randomIndex = (pokemonList.indices).random()
+                    val imageUrl = pokemonList[randomIndex].image
+                    Log.d("Imageurl", "Image url: $imageUrl")
+                    val imageView = dialog.findViewById<ImageView>(R.id.roundedPokemon)
+                    if (imageView != null) {
+                        Glide.with(requireContext())
+                            .load(imageUrl)
+                            .into(imageView)
+                    }
+                } else {
+                    Log.e("Viewmodel", "empty or null pokemon list")
+                }
+                }else {
+                    Log.e("Viewmodel","Error in response: ${response?.message()}")
+                }
 
-    }
+            }
+            val closeButton = dialog.findViewById<Button>(R.id.buttonCerrarRandomChallenge)
+            closeButton?.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
 
     //Brayan G
     private fun setupToolbar() {

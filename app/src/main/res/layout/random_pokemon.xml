@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#00FFFFFF"
+    android:background="@android:color/transparent"
     android:layout_gravity="center">
 
     <TextView
@@ -24,15 +24,15 @@
         android:id="@+id/roundedPokemon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@mipmap/picobotella"
         android:scaleType="centerCrop"
         android:contentDescription="@string/imagen_de_un_pokemon"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
+        android:background="@drawable/circle_pokemon"
         />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonCerrar"
+        android:id="@+id/buttonCerrarRandomChallenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cerrar"
@@ -40,6 +40,7 @@
         android:layout_below="@id/textViewReto"
         android:translationY="-25dp"
         android:backgroundTint="@color/TittleColor"
+        android:textColor="@color/white"
         app:cornerRadius="7dp"
         />
 
