@@ -1,7 +1,8 @@
 package com.univalle.picobotellamvvm.webservice
+import com.univalle.picobotellamvvm.model.PokemonList
 import com.univalle.picobotellamvvm.utils.Constants.ENDPOINT
 import retrofit2.http.GET
-class ApiService {
+interface ApiService {
     @GET(ENDPOINT)
-    suspend fun
+    suspend fun getListPokemon(): PokemonList
 }
