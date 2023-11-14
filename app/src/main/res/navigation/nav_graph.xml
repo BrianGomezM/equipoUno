@@ -7,20 +7,32 @@
 
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="com.univalle.picobotellamvvm.FragmentHome"
+        android:name="com.univalle.picobotellamvvm.view.fragment.FragmentHome"
         android:label="FragmentHome"
         tools:layout = "@layout/fragment_home">
         <action
             android:id="@+id/action_fragmentHome_to_instruccionesFragment"
             app:destination="@id/instruccionesFragment" />
+        <action
+            android:id="@+id/action_fragmentHome_to_challenges"
+            app:destination="@id/challenges" />
     </fragment>
     <fragment
         android:id="@+id/instruccionesFragment"
-        android:name="com.univalle.picobotellamvvm.InstruccionesFragment"
+        android:name="com.univalle.picobotellamvvm.view.fragment.InstruccionesFragment"
         android:label="InstruccionesFragment"
         tools:layout="@layout/fragment_instrucciones">
         <action
             android:id="@+id/action_instruccionesFragment_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/challenges"
+        android:name="com.univalle.picobotellamvvm.view.fragment.ChallengesFragment"
+        android:label="fragment_challenges"
+        tools:layout="@layout/fragment_challenges" >
+        <action
+            android:id="@+id/action_challenges_to_fragmentHome"
             app:destination="@id/fragmentHome" />
     </fragment>
 </navigation>
