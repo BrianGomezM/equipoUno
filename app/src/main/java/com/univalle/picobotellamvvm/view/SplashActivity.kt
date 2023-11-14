@@ -1,4 +1,4 @@
-package com.univalle.picobotellamvvm
+package com.univalle.picobotellamvvm.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.core.app.ActivityOptionsCompat
+import com.univalle.picobotellamvvm.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

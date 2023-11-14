@@ -1,4 +1,4 @@
-package com.univalle.picobotellamvvm
+package com.univalle.picobotellamvvm.view.fragment
 
 import android.animation.Animator
 import android.animation.ValueAnimator
@@ -21,14 +21,13 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 import com.univalle.picobotellamvvm.viewmodel.PokemonViewModel
+import com.univalle.picobotellamvvm.R
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.random.Random
@@ -46,6 +45,7 @@ class FragmentHome : Fragment() {
         binding.lifecycleOwner = this
         pokemonViewModel.getPokemones()
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,7 +88,7 @@ class FragmentHome : Fragment() {
         //binding.contadorTextView.text = "3"
 
         mediaPlayer.pause()
-        val bottlePlayer=MediaPlayer.create(requireContext(),R.raw.bottlesfx)
+        val bottlePlayer=MediaPlayer.create(requireContext(), R.raw.bottlesfx)
         bottlePlayer.start()
 
         binding.botonPresioname.isEnabled=false
@@ -143,7 +143,7 @@ class FragmentHome : Fragment() {
                         binding.contadorTextView.text = counter.toString()
                     } else {
                         binding.contadorTextView.visibility = View.INVISIBLE
-                            counter = 4
+                        counter = 4
                         //spinButton.isEnabled=true
 
                             mediaPlayer.start()
@@ -158,7 +158,7 @@ class FragmentHome : Fragment() {
         }
         timer.schedule(timertask, 1000L, 1000L)
     }
-    private fun showChallenge() {
+    private fun showChallenge(){
         val challengeDialog = AlertDialog.Builder(requireContext())
         challengeDialog.setView(R.layout.random_pokemon)
         val dialog = challengeDialog.create()
@@ -171,7 +171,6 @@ class FragmentHome : Fragment() {
                 if (!pokemonList.isNullOrEmpty()) {
                     val randomIndex = (pokemonList.indices).random()
                     val imageUrl = pokemonList[randomIndex].image
-                    Log.d("Imageurl", "Image url: $imageUrl")
                     val imageView = dialog.findViewById<ImageView>(R.id.roundedPokemon)
                     if (imageView != null) {
                         Glide.with(requireContext())
@@ -205,8 +204,16 @@ class FragmentHome : Fragment() {
             setupShowButton()
             setupRatingsButton()
             setupInstrucciones()
+            setupChallenges()
         }
 
+    }
+
+    private fun View.setupChallenges() {
+        val challengesClick = findViewById<ImageView>(R.id.challenge)
+        challengesClick.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentHome_to_challenges)
+        }
     }
 
     private fun View.setupShareButton() {
@@ -230,12 +237,13 @@ class FragmentHome : Fragment() {
         }*/
     }
 
+    /*
     private fun showDeleteDialog() {
         val mensajeReto = "hola esto es un reto"
         val idReto = 1
         val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto)
         dialog.show()
-    }
+    }*/
 
     private fun View.setupRatingsButton(){
         val ratingClick = findViewById<ImageView>(R.id.ratings)

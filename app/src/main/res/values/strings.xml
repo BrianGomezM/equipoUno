@@ -29,4 +29,9 @@ botella debe cumplir el reto que lanza la app, de lo contrario abandona el juego
     <string name="instrucciones2">Gana el último jugador que no abandone el juego."</string>
     <string name="imagen_de_un_pokemon">Imagen de un pokemon</string>
     <string name="cerrar">Cerrar</string>
+
+    <string name="escribir_el_reto">Escribir el reto...</string>
+    <string name="agregar_reto">Agregar reto</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
 </resources>

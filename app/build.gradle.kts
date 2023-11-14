@@ -48,7 +48,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
 
-
     //testing
     testImplementation("junit:junit:4.13.2")
 
@@ -59,6 +58,9 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation ("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation("androidx.navigation:navigation-common:$navVersion")
+
+    //CardView
+    implementation("androidx.cardview:cardview:1.0.0")
 
     //RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.1")

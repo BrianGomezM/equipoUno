@@ -1,4 +1,4 @@
-package com.univalle.picobotellamvvm
+package com.univalle.picobotellamvvm.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
+import com.univalle.picobotellamvvm.R
 import com.univalle.picobotellamvvm.databinding.FragmentInstruccionesBinding
 
 
