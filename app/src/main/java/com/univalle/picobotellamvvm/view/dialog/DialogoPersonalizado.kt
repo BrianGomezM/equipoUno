@@ -25,12 +25,12 @@ class DialogoPersonalizado {
             val challengeViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(context.applicationContext as Application)
                 .create(ChallengeViewModel::class.java)
 
-            val listEditText = listOf(binding.etReto, binding.etPlease)
+            val listEditText = listOf(binding.etReto)
 
             for (editText in listEditText) {
                 editText.addTextChangedListener {
                     val isListFull = listEditText.all {
-                        it.text.isNotEmpty() // si toda la lista no está vacía
+                        it.text.isNotEmpty()
                     }
                     binding.saveButton.isEnabled = isListFull
                 }
@@ -49,6 +49,9 @@ class DialogoPersonalizado {
                 challengeViewModel.saveChallenge(challenge)
 
                 Toast.makeText(context, "Reto guardado", Toast.LENGTH_SHORT).show()
+                alertDialog.dismiss()
+            }
+            binding.cancelButton.setOnClickListener {
                 alertDialog.dismiss()
             }
             alertDialog.show()

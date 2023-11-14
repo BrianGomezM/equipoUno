@@ -20,6 +20,7 @@
     <color name="TittleColor">#FF5722</color>
 
     <color name="gray">#AFAFAF</color>
+    <color name="darkgray">#5A5A5A</color>
     <color name="orange">#DC3906</color>
 
 </resources>
