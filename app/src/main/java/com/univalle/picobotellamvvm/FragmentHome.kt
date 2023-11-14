@@ -188,6 +188,9 @@ class FragmentHome : Fragment() {
             }
             val closeButton = dialog.findViewById<Button>(R.id.buttonCerrarRandomChallenge)
             closeButton?.setOnClickListener {
+                binding.botonPresioname.animation?.start()
+                binding.botonPresioname.visibility = View.VISIBLE
+                binding.botonPresioname.isEnabled = true
                 dialog.dismiss()
             }
         }
