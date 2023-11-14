@@ -22,4 +22,6 @@ interface ChallengeDao {
     @Update
     suspend fun updateChallenge(challenge: Challenge)
 
+    @Query("SELECT * FROM Challenge ORDER BY RANDOM() LIMIT 1")
+    suspend fun getRandomChallenge(): Challenge?
 }

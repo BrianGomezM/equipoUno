@@ -19,6 +19,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
@@ -28,6 +29,7 @@ import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 import com.univalle.picobotellamvvm.viewmodel.PokemonViewModel
 import com.univalle.picobotellamvvm.R
+import com.univalle.picobotellamvvm.viewmodel.ChallengeViewModel
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.random.Random
@@ -37,6 +39,7 @@ class FragmentHome : Fragment() {
     private var contador: CountDownTimer? = null
     private lateinit var mediaPlayer: MediaPlayer
     private val pokemonViewModel: PokemonViewModel by viewModels()
+    private val challengeViewmodel: ChallengeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -185,6 +188,18 @@ class FragmentHome : Fragment() {
                 }
 
             }
+
+            val textviewReto = dialog.findViewById<TextView>(R.id.textViewReto)
+            challengeViewmodel.getRandomChallenge()
+            Log.d("Reto", "${challengeViewmodel.randomChallenge}")
+            challengeViewmodel.randomChallenge.observe(viewLifecycleOwner){challenge ->
+                if (challenge != null){
+                    textviewReto?.text = challenge.descriptionChallenge
+                } else{
+                    Log.d("challenge", "Soy vacio jkaj")
+                }
+            }
+
             val closeButton = dialog.findViewById<Button>(R.id.buttonCerrarRandomChallenge)
             closeButton?.setOnClickListener {
                 binding.botonPresioname.animation?.start()

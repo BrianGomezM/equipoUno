@@ -14,6 +14,9 @@ class ChallengeViewModel(application: Application): AndroidViewModel(application
     private val challengeRepository = ChallengeRepository(context)
 
     private val _listChallenge = MutableLiveData<MutableList<Challenge>>()
+
+    private val _randomChallenge = MutableLiveData<Challenge>()
+    val randomChallenge: LiveData<Challenge> = _randomChallenge
     val listChallenge: LiveData<MutableList<Challenge>> get() = _listChallenge
 
     fun saveChallenge(challenge: Challenge) {
@@ -25,6 +28,12 @@ class ChallengeViewModel(application: Application): AndroidViewModel(application
     fun getListChallenge(){
         viewModelScope.launch {
             _listChallenge.value = challengeRepository.getListChallenge()
+        }
+    }
+
+    fun getRandomChallenge(){
+        viewModelScope.launch {
+            _randomChallenge.value = challengeRepository.getRandomChallenge()
         }
     }
 }

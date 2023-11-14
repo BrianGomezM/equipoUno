@@ -8,15 +8,15 @@
 
     <TextView
         android:id="@+id/textViewReto"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:background="@drawable/bg_redondo_reto"
-        android:text="Hola estoy por mientras aqui pero luego seré un reto"
         android:textStyle="bold"
         android:paddingVertical="90dp"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
+        android:textAlignment="center"
         android:layout_marginTop="50dp"
         />
 

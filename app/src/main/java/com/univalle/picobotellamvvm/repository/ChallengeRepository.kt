@@ -39,4 +39,10 @@ class ChallengeRepository(val context: Context)  {
             challengeDao.getListChallenge()
         }
     }
+
+    suspend fun getRandomChallenge(): Challenge? {
+        return withContext(Dispatchers.IO){
+            challengeDao.getRandomChallenge()
+        }
+    }
 }
