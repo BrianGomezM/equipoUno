@@ -7,7 +7,9 @@ import com.univalle.picobotellamvvm.databinding.ChallengeItemBinding
 import com.univalle.picobotellamvvm.model.Challenge
 import com.univalle.picobotellamvvm.view.viewholder.ChallengeViewHolder
 
-class ChallengeAdapter (private val listChallenge:MutableList<Challenge>): RecyclerView.Adapter<ChallengeViewHolder>() {
+class ChallengeAdapter (private val listChallenge:MutableList<Challenge>,
+                        private val onDeleteClickListener: (Int, String)  -> Unit
+): RecyclerView.Adapter<ChallengeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeViewHolder {
         val binding = ChallengeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ChallengeViewHolder(binding)
@@ -15,7 +17,7 @@ class ChallengeAdapter (private val listChallenge:MutableList<Challenge>): Recyc
 
     override fun onBindViewHolder(holder: ChallengeViewHolder, position: Int) {
         val challenge = listChallenge[position]
-        holder.setItemChallenge(challenge)
+        holder.setItemChallenge(challenge, onDeleteClickListener)
     }
 
     override fun getItemCount(): Int {

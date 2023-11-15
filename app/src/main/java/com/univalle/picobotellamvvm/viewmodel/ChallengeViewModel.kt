@@ -36,4 +36,11 @@ class ChallengeViewModel(application: Application): AndroidViewModel(application
             _randomChallenge.value = challengeRepository.getRandomChallenge()
         }
     }
+
+    fun deleteChallenge(challenge: Challenge) {
+        viewModelScope.launch {
+            challengeRepository.deleteChallenge(challenge)
+            getListChallenge()
+        }
+    }
 }
