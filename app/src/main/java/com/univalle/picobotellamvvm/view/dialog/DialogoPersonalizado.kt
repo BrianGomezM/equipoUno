@@ -51,6 +51,9 @@ class DialogoPersonalizado {
                 alertDialog.dismiss()
                 onDialogDismissed()
             }
+            binding.cancelButton.setOnClickListener {
+                alertDialog.dismiss()
+            }
             alertDialog.show()
         }
 
