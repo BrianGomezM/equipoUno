@@ -133,7 +133,7 @@ class FragmentHome : Fragment() {
     private fun startCountDown() {
 
 
-        var counter = 4
+        var counter = 3
         binding.contadorTextView.visibility = View.VISIBLE
         val timer = Timer()
         val timertask = object : TimerTask() {
@@ -141,12 +141,14 @@ class FragmentHome : Fragment() {
                 counter--
                 val mainHandler = Handler(Looper.getMainLooper())
                 mainHandler.post {
-                    if (counter > 0) {
+                    if (counter >= 0) {
 
                         binding.contadorTextView.text = counter.toString()
                     } else {
                         binding.contadorTextView.visibility = View.INVISIBLE
-                        counter = 4
+                        counter = 3
+                        binding.contadorTextView.text = counter.toString()
+
                         //spinButton.isEnabled=true
 
                             mediaPlayer.start()
@@ -159,7 +161,7 @@ class FragmentHome : Fragment() {
                 }
             }
         }
-        timer.schedule(timertask, 1000L, 1000L)
+        timer.schedule(timertask, 500L, 1500L)
     }
     private fun showChallenge(){
         val challengeDialog = AlertDialog.Builder(requireContext())
