@@ -45,4 +45,8 @@ class ChallengeRepository(val context: Context)  {
             challengeDao.getRandomChallenge()
         }
     }
+
+    suspend fun deleteChallenge(challenge: Challenge) {
+        challengeDao.deleteChallenge(challenge)
+    }
 }

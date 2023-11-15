@@ -8,7 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import com.univalle.picobotellamvvm.databinding.DialogoPersonalizadoBinding
 import com.univalle.picobotellamvvm.model.Challenge
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.univalle.picobotellamvvm.viewmodel.ChallengeViewModel
 
@@ -16,12 +15,12 @@ class DialogoPersonalizado {
     companion object {
 
         fun showDialogPersonalizado(
-            context: Context
+            context: Context,
+            onDialogDismissed: () -> Unit
         ) {
             val inflater = LayoutInflater.from(context)
             val binding = DialogoPersonalizadoBinding.inflate(inflater)
 
-            // Obtén o crea un ViewModel utilizando ViewModelProvider
             val challengeViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(context.applicationContext as Application)
                 .create(ChallengeViewModel::class.java)
 
@@ -50,9 +49,7 @@ class DialogoPersonalizado {
 
                 Toast.makeText(context, "Reto guardado", Toast.LENGTH_SHORT).show()
                 alertDialog.dismiss()
-            }
-            binding.cancelButton.setOnClickListener {
-                alertDialog.dismiss()
+                onDialogDismissed()
             }
             alertDialog.show()
         }

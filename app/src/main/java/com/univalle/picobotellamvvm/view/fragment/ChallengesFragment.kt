@@ -14,13 +14,14 @@ import com.univalle.picobotellamvvm.R
 import com.univalle.picobotellamvvm.databinding.FragmentChallengesBinding
 import com.univalle.picobotellamvvm.model.Challenge
 import com.univalle.picobotellamvvm.view.adapter.ChallengeAdapter
+import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 import com.univalle.picobotellamvvm.viewmodel.ChallengeViewModel
 
 class ChallengesFragment : Fragment() {
 
     private lateinit var binding: FragmentChallengesBinding
     private val challengeViewModel: ChallengeViewModel by viewModels()
-
+    private var challengeAdapter: ChallengeAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +33,6 @@ class ChallengesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //controladores()
         setupToolbar()
         setupAdd()
         observerViewModel()
@@ -49,17 +49,37 @@ class ChallengesFragment : Fragment() {
             val recycler = binding.recyclerview
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
-            val adapter = ChallengeAdapter(listaChallenge)
-            recycler.adapter = adapter
-            adapter.notifyDataSetChanged()
+            challengeAdapter  = ChallengeAdapter(listaChallenge) { position, descriptionChallenge ->
+                showDeleteDialog(position, descriptionChallenge)
+            }
+            recycler.adapter = challengeAdapter
         }
     }
 
     private fun setupAdd() {
         binding.fbagregar.setOnClickListener {
-            showDialogPersonalizado(binding.root.context)
+            showDialogPersonalizado(binding.root.context) {
+                observerViewModel()
+            }
         }
     }
+    private fun showDeleteDialog(position: Int, descriptionChallenge: String) {
+        val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
+        val mensajeReto = "Reto: $descriptionChallenge"
+        val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto) {
+            deleteChallenge(position)
+        }
+        dialog.show()
+    }
+
+    private fun deleteChallenge(position: Int) {
+        val challengeToDelete = challengeViewModel.listChallenge.value?.get(position)
+        if (challengeToDelete != null) {
+            challengeViewModel.deleteChallenge(challengeToDelete)
+            challengeAdapter?.notifyDataSetChanged()
+        }
+    }
+
 
     private fun recycler(){
 

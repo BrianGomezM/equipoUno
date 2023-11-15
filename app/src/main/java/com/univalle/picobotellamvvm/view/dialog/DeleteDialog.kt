@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import com.univalle.picobotellamvvm.R
 class DeleteDialog {
     companion object {
-        fun showDialog(context: Context, id: Int, mensaje: String): AlertDialog {
+        fun showDialog(context: Context, id: Int, mensaje: String, onDeleteConfirmed: () -> Unit): AlertDialog {
             val alertDialog = AlertDialog.Builder(ContextThemeWrapper(context, R.style.DialogStyle))
             alertDialog.setCancelable(false)
             val title = TextView(context)
@@ -24,8 +24,10 @@ class DeleteDialog {
 
             alertDialog.setMessage(mensaje)
             alertDialog.setPositiveButton(context.getString(R.string.respuestaP)) { dialog, _ ->
+                onDeleteConfirmed.invoke()
                 Toast.makeText(context, (context.getString(R.string.respuestaP2)), Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
+
             }
             alertDialog.setNegativeButton(context.getString(R.string.respuestaN)) { dialog, _ ->
                 dialog.dismiss()
