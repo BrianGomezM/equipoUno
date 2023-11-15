@@ -25,6 +25,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.univalle.picobotellamvvm.databinding.FragmentHomeBinding
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 import com.univalle.picobotellamvvm.viewmodel.PokemonViewModel
@@ -145,9 +147,9 @@ class FragmentHome : Fragment() {
 
                         binding.contadorTextView.text = counter.toString()
                     } else {
-                        binding.contadorTextView.visibility = View.INVISIBLE
-                        counter = 3
-                        binding.contadorTextView.text = counter.toString()
+                            binding.contadorTextView.visibility = View.INVISIBLE
+                            counter = 3
+                            binding.contadorTextView.text = counter.toString()
 
                         //spinButton.isEnabled=true
 
@@ -180,6 +182,8 @@ class FragmentHome : Fragment() {
                     if (imageView != null) {
                         Glide.with(requireContext())
                             .load(imageUrl)
+                            .override(275,275)
+                            .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                             .into(imageView)
                     }
                 } else {
@@ -193,12 +197,11 @@ class FragmentHome : Fragment() {
 
             val textviewReto = dialog.findViewById<TextView>(R.id.textViewReto)
             challengeViewmodel.getRandomChallenge()
-            Log.d("Reto", "${challengeViewmodel.randomChallenge}")
             challengeViewmodel.randomChallenge.observe(viewLifecycleOwner){challenge ->
                 if (challenge != null){
                     textviewReto?.text = challenge.descriptionChallenge
                 } else{
-                    Log.d("challenge", "Soy vacio jkaj")
+                    Log.d("challenge", "No hay challenges")
                 }
             }
 
