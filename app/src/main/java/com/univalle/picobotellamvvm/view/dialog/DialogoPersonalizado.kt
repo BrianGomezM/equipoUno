@@ -56,11 +56,5 @@ class DialogoPersonalizado {
             }
             alertDialog.show()
         }
-
-        private fun saveChallenge(challengeViewModel: ChallengeViewModel, binding: DialogoPersonalizadoBinding) {
-            val reto = binding.etReto.text.toString()
-            val challenge = Challenge(descriptionChallenge = reto)
-            challengeViewModel.saveChallenge(challenge)
-        }
     }
 }
