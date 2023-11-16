@@ -49,9 +49,9 @@ class ChallengesFragment : Fragment() {
             val recycler = binding.recyclerview
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
-            challengeAdapter  = ChallengeAdapter(listaChallenge) { position, descriptionChallenge ->
-                showDeleteDialog(position, descriptionChallenge)
-            }
+            challengeAdapter  = ChallengeAdapter(listaChallenge, { position, descriptionChallenge ->
+                showDeleteDialog(position, descriptionChallenge)},{position,descriptionChallenge-> showEditDialog(position,descriptionChallenge)
+            })
             recycler.adapter = challengeAdapter
         }
     }
@@ -79,6 +79,26 @@ class ChallengesFragment : Fragment() {
             challengeAdapter?.notifyDataSetChanged()
         }
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    private fun editChallenge(position: Int, descriptionChallenge: String ){
+        val challengetoEdit = challengeViewModel.listChallenge.value?.get(position)
+        val newChallenge = challengetoEdit.copy(descriptionChallenge=descriptionChallenge)
+        if(challengetoEdit!=null){
+            challengeViewModel.editChallenge(newChallenge)
+            challengeAdapter?.notifyDataSetChanged()
+        }
+        
+
+    }
+
+    private fun showEditDialog(position: Int,descriptionChallenge: String){
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
     private fun recycler(){

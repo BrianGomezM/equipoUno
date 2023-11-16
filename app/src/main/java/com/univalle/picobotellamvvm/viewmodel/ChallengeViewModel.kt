@@ -43,4 +43,12 @@ class ChallengeViewModel(application: Application): AndroidViewModel(application
             getListChallenge()
         }
     }
+
+    fun editChallenge(challenge: Challenge){
+        viewModelScope.launch {
+            challengeRepository.editChallenge(challenge)
+            //a ver si no explota
+            getListChallenge()
+        }
+    }
 }
