@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.univalle.picobotellamvvm.databinding.FragmentChallengesBinding
 import com.univalle.picobotellamvvm.model.Challenge
 import com.univalle.picobotellamvvm.view.adapter.ChallengeAdapter
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
+import com.univalle.picobotellamvvm.view.dialog.EditDialog
 import com.univalle.picobotellamvvm.viewmodel.ChallengeViewModel
 
 class ChallengesFragment : Fragment() {
@@ -83,21 +85,19 @@ class ChallengesFragment : Fragment() {
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     private fun editChallenge(position: Int, descriptionChallenge: String ){
-        val challengetoEdit = challengeViewModel.listChallenge.value?.get(position)
-        val newChallenge = challengetoEdit.copy(descriptionChallenge=descriptionChallenge)
-        if(challengetoEdit!=null){
-            challengeViewModel.editChallenge(newChallenge)
-            challengeAdapter?.notifyDataSetChanged()
-        }
-        
+
 
     }
 
     private fun showEditDialog(position: Int,descriptionChallenge: String){
-
+        val editdialog = AlertDialog.Builder(requireContext())
+        editdialog.setView(R.layout.editar_reto)
+        val dialog = editdialog.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
+        dialog.show()
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
