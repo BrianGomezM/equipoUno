@@ -6,17 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clase6.Dialogos.DialogoPersonalizado.Companion.showDialogPersonalizado
+import com.univalle.picobotellamvvm.view.dialog.EditDialogo
 import com.univalle.picobotellamvvm.R
 import com.univalle.picobotellamvvm.databinding.FragmentChallengesBinding
 import com.univalle.picobotellamvvm.model.Challenge
 import com.univalle.picobotellamvvm.view.adapter.ChallengeAdapter
 import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
-import com.univalle.picobotellamvvm.view.dialog.EditDialog
 import com.univalle.picobotellamvvm.viewmodel.ChallengeViewModel
 
 class ChallengesFragment : Fragment() {
@@ -24,6 +26,7 @@ class ChallengesFragment : Fragment() {
     private lateinit var binding: FragmentChallengesBinding
     private val challengeViewModel: ChallengeViewModel by viewModels()
     private var challengeAdapter: ChallengeAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,20 +86,64 @@ class ChallengesFragment : Fragment() {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    private fun editChallenge(position: Int, descriptionChallenge: String ){
+    ////////////////////////////////////////***////////////////////////////////////////////////////
+    private fun editChallenge(position: Int, descriptionChallengetoEdit: String ){
+        /**
+        var challengeToEdit = challengeViewModel.listChallenge.value?.get(position)
+        challengeToEdit?.descriptionChallenge=descriptionChallengetoEdit
+        */
+        val newChallenge = Challenge(position, descriptionChallengetoEdit)
+        if (newChallenge!=null){
+            challengeViewModel.editChallenge(newChallenge)
+            challengeAdapter?.notifyDataSetChanged()
+        }
 
 
     }
 
     private fun showEditDialog(position: Int,descriptionChallenge: String){
-        val editdialog = AlertDialog.Builder(requireContext())
-        editdialog.setView(R.layout.editar_reto)
-        val dialog = editdialog.create()
+        EditDialogo.showEditDialogReal(binding.root.context) {
+            observerViewModel()
+        }
+
+        /**
+
+        val editDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.editar_reto, null)
+
+
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(editDialogView)
+            .create()
+
+
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
+
+        //setup textfield
+        val textEditField = editDialogView.findViewById<EditText>(R.id.editarReto)
+        textEditField.setText(descriptionChallenge)
+
+
+
+        //listeners
+        val cancelEditButton = editDialogView.findViewById<AppCompatButton>(R.id.canceledit_button)
+        cancelEditButton.setOnClickListener {
+
+            dialog?.dismiss()
+        }
+        val editButton = editDialogView.findViewById<AppCompatButton>(R.id.edit_button)
+        editButton.setOnClickListener{
+            editChallenge(position,descriptionChallenge)
+            dialog?.dismiss()
+        }
+
+
         dialog.show()
+        */
+
     }
+
 
 
 

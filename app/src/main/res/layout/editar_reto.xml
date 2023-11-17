@@ -25,7 +25,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/etReto"
+            android:id="@+id/editarReto"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:background="@drawable/boton_enabled"
                 android:layout_marginEnd="40dp"
                 android:textColor="@color/white"
-                android:id="@+id/cancel_button"
+                android:id="@+id/canceledit_button"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
