@@ -23,6 +23,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -32,6 +33,7 @@ import com.univalle.picobotellamvvm.view.dialog.DeleteDialog
 import com.univalle.picobotellamvvm.viewmodel.PokemonViewModel
 import com.univalle.picobotellamvvm.R
 import com.univalle.picobotellamvvm.viewmodel.ChallengeViewModel
+import com.univalle.picobotellamvvm.viewmodel.SoundViewModel
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.random.Random
@@ -42,6 +44,8 @@ class FragmentHome : Fragment() {
     private lateinit var mediaPlayer: MediaPlayer
     private val pokemonViewModel: PokemonViewModel by viewModels()
     private val challengeViewmodel: ChallengeViewModel by viewModels()
+    private lateinit var soundViewModel: SoundViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,6 +61,7 @@ class FragmentHome : Fragment() {
 
         setupToolbar()
         super.onViewCreated(view, savedInstanceState)
+        soundViewModel = ViewModelProvider(requireActivity()).get(SoundViewModel::class.java)
 
         val parpadeoAnim = AlphaAnimation(1f, 0f)
         parpadeoAnim.duration = 1000 // Duración de cada ciclo de parpadeo en milisegundos
@@ -70,13 +75,28 @@ class FragmentHome : Fragment() {
 
         }
         botonIniciar.startAnimation(parpadeoAnim)
+
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.st)
         mediaPlayer.isLooping = true
-        mediaPlayer.start()
+        //mediaPlayer.pause()
 
+        //mediaPlayer.
+        soundIcon()
+
+        if (!soundViewModel.soundPlaying) {
+            mediaPlayer.setVolume(0.2f,0.2f)
         }
 
+    }
 
+    private fun soundIcon() {
+        val sound = view?.findViewById<ImageView>(R.id.sound)
+
+        val icon = if (soundViewModel.soundPlaying)
+            R.drawable.baseline_volume_up_24 else R.drawable.baseline_volume_off_24
+
+        sound?.setImageResource(icon)
+    }
 
     override fun onPause() {
         super.onPause()
@@ -128,12 +148,9 @@ class FragmentHome : Fragment() {
         //inicializacion del giro
         valueAnimator.start()
 
-
-
-
     }
-    private fun startCountDown() {
 
+    private fun startCountDown() {
 
         var counter = 3
         binding.contadorTextView.visibility = View.VISIBLE
@@ -151,12 +168,8 @@ class FragmentHome : Fragment() {
                             counter = 3
                             binding.contadorTextView.text = counter.toString()
 
-                        //spinButton.isEnabled=true
-
                             mediaPlayer.start()
-
                             showChallenge()
-
 
                         timer.cancel()
                     }
@@ -221,12 +234,39 @@ class FragmentHome : Fragment() {
         activity.supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.contentToobar.toolbar.apply {
             setupShareButton()
-            setupShowButton()
+            setupSoundButton()
             setupRatingsButton()
             setupInstrucciones()
             setupChallenges()
         }
 
+    }
+
+    private fun View.setupRatingsButton(){
+        val ratingClick = findViewById<ImageView>(R.id.ratings)
+        ratingClick.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.appUrl)))
+            startActivity(intent)
+        }
+    }
+
+    private fun View.setupSoundButton() {
+        val soundClick = findViewById<ImageView>(R.id.sound)
+
+        soundClick.setOnClickListener {
+            soundViewModel.soundPlaying = !soundViewModel.soundPlaying
+            soundIcon()
+
+            if (soundViewModel.soundPlaying) mediaPlayer.start() else mediaPlayer.pause()
+
+        }
+    }
+
+    private fun View.setupInstrucciones() {
+        val ratingClick = findViewById<ImageView>(R.id.instrucciones)
+        ratingClick.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentHome_to_instruccionesFragment)
+        }
     }
 
     private fun View.setupChallenges() {
@@ -249,37 +289,5 @@ class FragmentHome : Fragment() {
             startActivity(Intent.createChooser(shareIntent, getString(R.string.titleSistema)))
         }
     }
-
-    private fun View.setupShowButton() {
-      /*  val pruebaImageView = findViewById<ImageView>(R.id.prueba)
-        pruebaImageView.setOnClickListener {
-            showDeleteDialog()
-        }*/
-    }
-
-    /*
-    private fun showDeleteDialog() {
-        val mensajeReto = "hola esto es un reto"
-        val idReto = 1
-        val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto)
-        dialog.show()
-    }*/
-
-    private fun View.setupRatingsButton(){
-        val ratingClick = findViewById<ImageView>(R.id.ratings)
-        ratingClick.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.appUrl)))
-            startActivity(intent)
-        }
-    }
-
-    private fun View.setupInstrucciones() {
-        val ratingClick = findViewById<ImageView>(R.id.instrucciones)
-        ratingClick.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentHome_to_instruccionesFragment)
-        }
-    }
-
-
 
 }

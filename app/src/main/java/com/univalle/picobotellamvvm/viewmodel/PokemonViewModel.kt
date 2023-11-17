@@ -1,9 +1,11 @@
 package com.univalle.picobotellamvvm.viewmodel
 
 import android.app.Application
+import android.media.MediaPlayer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.univalle.picobotellamvvm.model.PokemonList
 import com.univalle.picobotellamvvm.repository.ChallengeRepository
@@ -23,4 +25,8 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
+}
+
+class SoundViewModel : ViewModel() {
+    var soundPlaying: Boolean = true
 }
