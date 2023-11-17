@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Challenge(
     @PrimaryKey (autoGenerate = true)
     val id: Int = 0,
-    val descriptionChallenge: String
+    var descriptionChallenge: String
 )
