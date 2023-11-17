@@ -144,40 +144,8 @@ class ChallengesFragment : Fragment() {
         */
 
     }
-
-
-
-
-
-    private fun recycler(){
-
-    }
-
-    /*
-    private fun controladores() {
-        recycler()
-    }
-
-    fun recycler() {
-
-        var listChallenge = mutableListOf(
-            Challenge("hola"),
-            Challenge("por favor"),
-            Challenge("dime"),
-            Challenge("que funcionas")
-        )
-
-        val recycler = binding.recyclerview
-        recycler.layoutManager = LinearLayoutManager(context)
-        val adapter = ChallengeAdapter(listChallenge)
-        recycler.adapter = adapter
-        adapter.notifyDataSetChanged()
-    }
-
-
-     */
     private fun setupToolbar() {
-        binding.contentToolbar.toolbar2.setNavigationOnClickListener { onBackPressed() }
+        binding.contentToolbar2.toolbarChallenge.setNavigationOnClickListener { onBackPressed() }
     }
 
     private fun onBackPressed() {
