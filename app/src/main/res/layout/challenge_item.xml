@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foreground="?selectableItemBackground"
-            android:backgroundTint="@color/backgroundColorItem"
+            android:backgroundTint="@color/gray"
             card_view:cardCornerRadius="10dp"
             android:elevation="8dp"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -28,9 +28,9 @@
 
                 <ImageView
                     android:id="@+id/imageIcon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_add"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/picobotella"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="2dp"
@@ -38,19 +38,21 @@
 
                 <ImageView
                     android:id="@+id/edit"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/ic_edit"
+                    android:background="?selectableItemBackgroundBorderless"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintEnd_toStartOf="@id/delete"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="20dp"/>
 
                 <ImageView
                     android:id="@+id/delete"
                     android:layout_width="20dp"
-                    android:layout_height="16dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/ic_delete"
+                    android:background="?selectableItemBackgroundBorderless"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="2dp"
