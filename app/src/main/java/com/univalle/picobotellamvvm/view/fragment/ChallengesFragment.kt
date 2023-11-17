@@ -102,9 +102,10 @@ class ChallengesFragment : Fragment() {
     }
 
     private fun showEditDialog(position: Int,descriptionChallenge: String){
-        EditDialogo.showEditDialogReal(binding.root.context) {
+
+        EditDialogo.showEditDialogReal(binding.root.context, {
             observerViewModel()
-        }
+        },position,descriptionChallenge)
 
         /**
 
