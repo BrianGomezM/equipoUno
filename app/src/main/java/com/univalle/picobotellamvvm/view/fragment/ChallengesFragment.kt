@@ -2,14 +2,19 @@ package com.univalle.picobotellamvvm.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clase6.Dialogos.DialogoPersonalizado.Companion.showDialogPersonalizado
+import com.univalle.picobotellamvvm.view.dialog.EditDialogo
 import com.univalle.picobotellamvvm.R
 import com.univalle.picobotellamvvm.databinding.FragmentChallengesBinding
 import com.univalle.picobotellamvvm.model.Challenge
@@ -22,6 +27,7 @@ class ChallengesFragment : Fragment() {
     private lateinit var binding: FragmentChallengesBinding
     private val challengeViewModel: ChallengeViewModel by viewModels()
     private var challengeAdapter: ChallengeAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,9 +55,9 @@ class ChallengesFragment : Fragment() {
             val recycler = binding.recyclerview
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
-            challengeAdapter  = ChallengeAdapter(listaChallenge) { position, descriptionChallenge ->
-                showDeleteDialog(position, descriptionChallenge)
-            }
+            challengeAdapter  = ChallengeAdapter(listaChallenge, { position, descriptionChallenge ->
+                showDeleteDialog(position, descriptionChallenge)},{position,descriptionChallenge-> showEditDialog(position,descriptionChallenge)
+            })
             recycler.adapter = challengeAdapter
         }
     }
@@ -65,6 +71,7 @@ class ChallengesFragment : Fragment() {
     }
     private fun showDeleteDialog(position: Int, descriptionChallenge: String) {
         val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
+        Log.d("soy id de reto", "Reto $idReto")
         val mensajeReto = "Reto: $descriptionChallenge"
         val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto) {
             deleteChallenge(position)
@@ -78,6 +85,15 @@ class ChallengesFragment : Fragment() {
             challengeViewModel.deleteChallenge(challengeToDelete)
             challengeAdapter?.notifyDataSetChanged()
         }
+    }
+
+
+    ////////////////////////////////////////***////////////////////////////////////////////////////
+    private fun showEditDialog(position: Int,descriptionChallenge: String){
+        val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
+        EditDialogo.showEditDialogReal(binding.root.context, {
+            observerViewModel()
+        },idReto,descriptionChallenge)
     }
 
     private fun setupToolbar() {

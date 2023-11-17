@@ -49,4 +49,8 @@ class ChallengeRepository(val context: Context)  {
     suspend fun deleteChallenge(challenge: Challenge) {
         challengeDao.deleteChallenge(challenge)
     }
+
+    suspend fun editChallenge(challenge: Challenge){
+        challengeDao.updateChallenge(challenge)
+    }
 }

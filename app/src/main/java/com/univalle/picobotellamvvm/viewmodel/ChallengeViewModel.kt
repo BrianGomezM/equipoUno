@@ -1,6 +1,7 @@
 package com.univalle.picobotellamvvm.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,6 +41,14 @@ class ChallengeViewModel(application: Application): AndroidViewModel(application
     fun deleteChallenge(challenge: Challenge) {
         viewModelScope.launch {
             challengeRepository.deleteChallenge(challenge)
+            getListChallenge()
+        }
+    }
+
+    fun editChallenge(challenge: Challenge){
+        viewModelScope.launch {
+            challengeRepository.editChallenge(challenge)
+            //a ver si no explota
             getListChallenge()
         }
     }
