@@ -16,8 +16,11 @@ class EditDialogo{
 
         fun showEditDialogReal(
             context: Context,
-            onDialogDismissed: () -> Unit
+            onDialogDismissed: () -> Unit,
+            position: Int,
+            textToEdit: String
         ) {
+
             val inflater = LayoutInflater.from(context)
             val binding = EditarRetoBinding.inflate(inflater)
 
@@ -25,7 +28,7 @@ class EditDialogo{
                 .create(ChallengeViewModel::class.java)
 
             val listEditText = listOf(binding.editarReto)//Textfield
-
+            binding.editarReto.setText(textToEdit)
             for (editText in listEditText) {
                 editText.addTextChangedListener {
                     val isListFull = listEditText.all {
@@ -42,9 +45,9 @@ class EditDialogo{
 
             binding.editButton.setOnClickListener {
                 //saveChallenge(challengeViewModel, binding)
-                val posicion=0
+
                 val reto = binding.editarReto.text.toString()
-                val challenge = Challenge(posicion,descriptionChallenge = reto)
+                val challenge = Challenge(position,descriptionChallenge = reto)
                 challengeViewModel.editChallenge(challenge)
 
                 Toast.makeText(context, "Reto editado", Toast.LENGTH_SHORT).show()
