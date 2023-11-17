@@ -2,6 +2,7 @@ package com.univalle.picobotellamvvm.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,7 @@ class ChallengesFragment : Fragment() {
     }
     private fun showDeleteDialog(position: Int, descriptionChallenge: String) {
         val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
+        Log.d("soy id de reto", "Reto $idReto")
         val mensajeReto = "Reto: $descriptionChallenge"
         val dialog = DeleteDialog.showDialog(binding.root.context, idReto, mensajeReto) {
             deleteChallenge(position)
@@ -87,63 +89,13 @@ class ChallengesFragment : Fragment() {
 
 
     ////////////////////////////////////////***////////////////////////////////////////////////////
-    private fun editChallenge(position: Int, descriptionChallengetoEdit: String ){
-        /**
-        var challengeToEdit = challengeViewModel.listChallenge.value?.get(position)
-        challengeToEdit?.descriptionChallenge=descriptionChallengetoEdit
-        */
-        val newChallenge = Challenge(position, descriptionChallengetoEdit)
-        if (newChallenge!=null){
-            challengeViewModel.editChallenge(newChallenge)
-            challengeAdapter?.notifyDataSetChanged()
-        }
-
-
-    }
-
     private fun showEditDialog(position: Int,descriptionChallenge: String){
-
+        val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
         EditDialogo.showEditDialogReal(binding.root.context, {
             observerViewModel()
-        },position+1,descriptionChallenge)
-
-        /**
-
-        val editDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.editar_reto, null)
-
-
-
-        val dialog = AlertDialog.Builder(requireContext())
-            .setView(editDialogView)
-            .create()
-
-
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog.setCancelable(false)
-
-        //setup textfield
-        val textEditField = editDialogView.findViewById<EditText>(R.id.editarReto)
-        textEditField.setText(descriptionChallenge)
-
-
-
-        //listeners
-        val cancelEditButton = editDialogView.findViewById<AppCompatButton>(R.id.canceledit_button)
-        cancelEditButton.setOnClickListener {
-
-            dialog?.dismiss()
-        }
-        val editButton = editDialogView.findViewById<AppCompatButton>(R.id.edit_button)
-        editButton.setOnClickListener{
-            editChallenge(position,descriptionChallenge)
-            dialog?.dismiss()
-        }
-
-
-        dialog.show()
-        */
-
+        },idReto,descriptionChallenge)
     }
+
     private fun setupToolbar() {
         binding.contentToolbar2.toolbarChallenge.setNavigationOnClickListener { onBackPressed() }
     }
