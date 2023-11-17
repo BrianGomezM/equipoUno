@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.univalle.picobotellamvvm.model.PokemonList
 import com.univalle.picobotellamvvm.repository.ChallengeRepository
@@ -23,4 +24,9 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
+}
+
+
+class SoundViewModel : ViewModel() {
+    var soundPlaying: Boolean = true
 }

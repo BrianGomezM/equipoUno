@@ -48,7 +48,6 @@ class ChallengesFragment : Fragment() {
         observerListChallenge()
     }
 
-
     private fun observerListChallenge() {
         challengeViewModel.getListChallenge()
         challengeViewModel.listChallenge.observe(viewLifecycleOwner) { listaChallenge ->
@@ -69,6 +68,7 @@ class ChallengesFragment : Fragment() {
             }
         }
     }
+
     private fun showDeleteDialog(position: Int, descriptionChallenge: String) {
         val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
         Log.d("soy id de reto", "Reto $idReto")
@@ -87,8 +87,6 @@ class ChallengesFragment : Fragment() {
         }
     }
 
-
-    ////////////////////////////////////////***////////////////////////////////////////////////////
     private fun showEditDialog(position: Int,descriptionChallenge: String){
         val idReto = challengeViewModel.listChallenge.value?.get(position)?.id ?: -1
         EditDialogo.showEditDialogReal(binding.root.context, {
