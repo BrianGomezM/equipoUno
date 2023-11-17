@@ -74,8 +74,8 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="351dp"
-            android:layout_height="56dp"
+            android:layout_width="379dp"
+            android:layout_height="74dp"
             android:layout_gravity="center"
             android:layout_marginTop="88dp"
             android:padding="10dp"
