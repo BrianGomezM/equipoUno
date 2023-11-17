@@ -41,8 +41,6 @@ class DialogoPersonalizado {
             alertDialog.setView(binding.root)
 
             binding.saveButton.setOnClickListener {
-                //saveChallenge(challengeViewModel, binding)
-
                 val reto = binding.etReto.text.toString()
                 val challenge = Challenge(descriptionChallenge = reto)
                 challengeViewModel.saveChallenge(challenge)

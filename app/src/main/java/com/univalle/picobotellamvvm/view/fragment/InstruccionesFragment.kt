@@ -27,10 +27,8 @@ class InstruccionesFragment : Fragment() {
     }
 
     private fun setupToolbar(){
-
         binding.contentToolbar.toolbar2.setNavigationOnClickListener{ onBackPressed() }
-
-        }
+    }
 
     private fun onBackPressed() {
         findNavController().navigate(R.id.action_instruccionesFragment_to_fragmentHome)

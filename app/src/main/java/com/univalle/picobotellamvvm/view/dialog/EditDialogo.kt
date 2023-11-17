@@ -44,7 +44,6 @@ class EditDialogo{
             alertDialog.setView(binding.root)
 
             binding.editButton.setOnClickListener {
-                //saveChallenge(challengeViewModel, binding)
 
                 val reto = binding.editarReto.text.toString()
                 val challenge = Challenge(position,descriptionChallenge = reto)
